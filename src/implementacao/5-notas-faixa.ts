@@ -1,34 +1,36 @@
 // Elabore um algoritmo que leia uma série de 50 notas e uma média necessária para aprovação, calcule 
 //e mostre quantas notas estão em um intervalo de valores que vai de 10% abaixo da média até 10% acima dela.
-function contarNotasNaFaixa(max: number, min: number) {
-    let notas = [];
-    let acimaMedia = [];
-    let abaixoMedia = [];
+function contarNotasNaFaixa(max: number, min: number, media: number): number {
+
+    if(max <= min){
+        throw new Error(" O valor máximo deve ser maior que o minimo e o minimo menor que o maior");
+    }
+
+    let notas: number [] = [];
     let soma = 0;
-    let media = 0;
 
-    for(let i = 0; i <= 50; i++){
-        let nota = Math.floor(Math.random() * (max - min) ) + min;
+
+    for(let i = 0; i < 50; i++){
+        let nota = Math.floor(Math.random() * (max - min + 1 )) + min;
         notas.push(nota);
-        soma += notas[i];
+        soma += nota;
     }
 
-    media = soma / notas.length;
+    let limiteInferior = media * 0.9 
+    let limiteSuperior = media * 1.1 
 
-    let mediaMinima = media - (media * 0.1)
-    let mediaMaxima = media + (media * 0.1)
-    
-    for(let i = 0; i <= notas.length; i++){
-        if(notas[i] > 7 && media >= (media * 0.1) ){
-            acimaMedia.push(notas[i]);
-        }
-        else if (notas[i] >= 0 && notas[i] <= 7 && media >= (media * 0.1)){
-            abaixoMedia.push(notas[i]); 
+    let contador = 0;
+    for (const nota of notas) {
+        if (nota >= limiteInferior && nota <= limiteSuperior) {
+            contador++;
         }
     }
-    console.log("Notas: ", notas);
-    console.log("Notas abaixo da média: ", abaixoMedia);
-    console.log("Notas acima da dia: ", acimaMedia);
+
+    console.log("Notas:", notas);
+    console.log("Média:", media);
+    console.log("Quantidade de notas na faixa:", contador);
+
+    return contador; // Retorna a quantidade de notas na faixa
 }
 
-contarNotasNaFaixa(10,0);
+contarNotasNaFaixa(10,0,7);
