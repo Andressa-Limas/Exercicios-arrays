@@ -1,5 +1,3 @@
-// Elabore um algoritmo que leia uma série de 50 notas e uma média necessária para aprovação, calcule 
-//e mostre quantas notas estão em um intervalo de valores que vai de 10% abaixo da média até 10% acima dela.
 function contarNotasNaFaixa(max: number, min: number, media: number): number {
 
     if(max <= min){
@@ -30,7 +28,7 @@ function contarNotasNaFaixa(max: number, min: number, media: number): number {
     console.log("Média:", media);
     console.log("Quantidade de notas na faixa:", contador);
 
-    return contador; // Retorna a quantidade de notas na faixa
+    return contador; 
 }
 
 contarNotasNaFaixa(10,0,7);
